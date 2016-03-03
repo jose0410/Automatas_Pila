@@ -29,7 +29,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         inputSymbols = new java.awt.TextField();
-        textField2 = new java.awt.TextField();
+        stackSymbols = new java.awt.TextField();
         choice1 = new java.awt.Choice();
         jLabel4 = new javax.swing.JLabel();
         textField3 = new java.awt.TextField();
@@ -64,7 +64,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel4.setEnabled(false);
 
         jButton1.setText("Crear Tabla");
-        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -87,7 +86,7 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(textField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                                .addComponent(textField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(stackSymbols, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(inputSymbols, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(40, 40, 40)
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -109,7 +108,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addComponent(jLabel2)
                         .addGap(16, 16, 16)
-                        .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(stackSymbols, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -128,7 +127,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.getAccessibleContext().setAccessibleName("jlabel3");
         jLabel3.getAccessibleContext().setAccessibleDescription("");
         inputSymbols.getAccessibleContext().setAccessibleName("inputSymbols");
-        textField2.getAccessibleContext().setAccessibleName("stackSymbols");
+        stackSymbols.getAccessibleContext().setAccessibleName("stackSymbols");
         jLabel4.getAccessibleContext().setAccessibleName("jlabel4");
         jLabel4.getAccessibleContext().setAccessibleDescription("");
         textField3.getAccessibleContext().setAccessibleName("Conf_Stack");
@@ -139,7 +138,9 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String h = this.inputSymbols.getText();
-        Validacion.validar(h);
+        Validacion.validarSimbolosEntrada(h);
+        String h1 = stackSymbols.getText();
+        Validacion.validarSimbolosPila(h);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void inputSymbolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSymbolsActionPerformed
@@ -192,7 +193,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private java.awt.TextField textField2;
+    private java.awt.TextField stackSymbols;
     private java.awt.TextField textField3;
     // End of variables declaration//GEN-END:variables
 }

@@ -35,7 +35,7 @@
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Component id="textField3" alignment="0" pref="174" max="32767" attributes="0"/>
-                              <Component id="textField2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="stackSymbols" alignment="0" max="32767" attributes="0"/>
                               <Component id="inputSymbols" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -64,7 +64,7 @@
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="textField2" min="-2" max="-2" attributes="0"/>
+                      <Component id="stackSymbols" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="21" max="32767" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -124,7 +124,7 @@
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="inputSymbolsKeyTyped"/>
       </Events>
     </Component>
-    <Component class="java.awt.TextField" name="textField2">
+    <Component class="java.awt.TextField" name="stackSymbols">
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="stackSymbols"/>
       </AccessibilityProperties>
@@ -153,7 +153,6 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Crear Tabla"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="createTable"/>
