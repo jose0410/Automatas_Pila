@@ -11,6 +11,11 @@ public class Validacion {
     public static void validarSimbolosEntrada(String h){        
         char[] texto = h.toCharArray(); 
         int verificarIngreso = 0;
+        if(texto.length == 0){
+            String mensaje = "No ha ingresado un caracter "
+                        + "en los Simbolos de Entrada";
+                JOptionPane.showMessageDialog(null, mensaje);
+        }
         for(int i = 0; i < texto.length; i++){
             if(texto[0]==','){
                 String mensaje = "No ha ingresado un primer caracter "
@@ -37,10 +42,34 @@ public class Validacion {
         }       
     }
     
+    public static void validarRepetidosEntrada(String h){
+        char[] texto = h.toCharArray();
+        char[] repetidos = new char[texto.length];
+        int ingreso = 0;
+        for(int i = 0; i < texto.length; i = i + 2){
+            for(int j = 0; j < texto.length; j++){
+                if(texto[i] == repetidos[j] & ingreso == 0){
+                    String mensaje = "Ingreso simbolos repetidos "
+                                    + "en los Simbolos de Entrada";
+                            JOptionPane.showMessageDialog(null, mensaje);
+                            ingreso++;
+                }
+                else{
+                    repetidos[j] = texto[i];
+                }
+            }
+            
+        }
+    }
+    
     public static void validarSimbolosPila(String h){        
         char[] texto = h.toCharArray(); 
         int verificarIngreso = 0;
-        char[] verificarRepetidos;
+        if(texto.length == 0){
+            String mensaje = "No ha ingresado un caracter "
+                        + "en los Simbolos de la Pila";
+                JOptionPane.showMessageDialog(null, mensaje);
+        }
         for(int i = 0; i < texto.length; i++){
             if(texto[0]==','){
                 String mensaje = "No ha ingresado un primer caracter "
@@ -64,7 +93,27 @@ public class Validacion {
                     }
                 }
             }
-            //falta verificar que no esten repetidos en ambos metodos de validacion          
+                      
+        }
+    }
+    
+    public static void validarRepetidosPila(String h){
+        char[] texto = h.toCharArray();
+        char[] repetidos = new char[texto.length];
+        int ingreso = 0;
+        for(int i = 0; i < texto.length; i = i + 2){
+            for(int j = 0; j < texto.length; j++){
+                if(texto[i] == repetidos[j] & ingreso == 0){
+                    String mensaje = "Ingreso simbolos repetidos "
+                                    + "en los Simbolos de la Pila";
+                            JOptionPane.showMessageDialog(null, mensaje);
+                            ingreso++;
+                }
+                else{
+                    repetidos[j] = texto[i];
+                }
+            }
+            
         }
     }
     
