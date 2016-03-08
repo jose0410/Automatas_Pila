@@ -107,6 +107,7 @@ public class Validacion {
                                     + "en los Simbolos de la Pila";
                             JOptionPane.showMessageDialog(null, mensaje);
                             ingreso++;
+                            System.out.println("sfdf");
                 }
                 else{
                     repetidos[j] = texto[i];
