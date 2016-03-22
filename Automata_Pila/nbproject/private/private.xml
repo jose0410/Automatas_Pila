@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/PedroGallego/Automatas_Pila/Automata_Pila/src/Visual/Principal.java</file>
+            <file>file:/Users/PedroGallego/Automatas_Pila/Automata_Pila/src/Automata/Transicion.java</file>
+            <file>file:/Users/PedroGallego/Automatas_Pila/Automata_Pila/src/Automata/Operacion.java</file>
+            <file>file:/Users/PedroGallego/Automatas_Pila/Automata_Pila/src/Automata/Validacion.java</file>
+            <file>file:/Users/PedroGallego/Automatas_Pila/Automata_Pila/src/Automata/Automata.java</file>
+        </group>
     </open-files>
 </project-private>

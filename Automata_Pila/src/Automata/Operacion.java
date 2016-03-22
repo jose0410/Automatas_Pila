@@ -18,4 +18,22 @@ public class Operacion {
         this.nombre = nombre;
         this.parametro = parametro;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getParametro() {
+        return parametro;
+    }
+
+    public void setParametro(String parametro) {
+        this.parametro = parametro;
+    }
+    
+    
 }
