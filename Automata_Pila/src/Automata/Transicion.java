@@ -15,7 +15,7 @@ public class Transicion {
     private ArrayList<Operacion> operaciones = new ArrayList<Operacion>();
     
     public void addOperacion (String nombre,String parametro) {
-        operaciones.add(new Operacion (nombre),(parametro));
+        operaciones.add(new Operacion (nombre,parametro));
     }
     
 }
