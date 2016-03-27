@@ -20,9 +20,9 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        this.jTabbedPane1.setEnabledAt(0, false);
-        this.jTabbedPane1.setEnabledAt(1, false);
-        this.jTabbedPane1.setEnabledAt(2, false);
+        this.Estados.setEnabledAt(0, false);
+        this.Estados.setEnabledAt(1, false);
+        this.Estados.setEnabledAt(2, false);
     }
     
     @SuppressWarnings("unchecked")
@@ -36,7 +36,7 @@ public class Principal extends javax.swing.JFrame {
         stackSymbols = new java.awt.TextField();
         jLabel4 = new javax.swing.JLabel();
         Conf_Stack = new java.awt.TextField();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        Estados = new javax.swing.JTabbedPane();
         estado1Panel = new javax.swing.JPanel();
         estado2Panel = new javax.swing.JPanel();
         estado3Panel = new javax.swing.JPanel();
@@ -90,7 +90,7 @@ public class Principal extends javax.swing.JFrame {
             .addGap(0, 463, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Estado 1", estado1Panel);
+        Estados.addTab("Estado 1", estado1Panel);
 
         javax.swing.GroupLayout estado2PanelLayout = new javax.swing.GroupLayout(estado2Panel);
         estado2Panel.setLayout(estado2PanelLayout);
@@ -103,7 +103,7 @@ public class Principal extends javax.swing.JFrame {
             .addGap(0, 463, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Estado 2", estado2Panel);
+        Estados.addTab("Estado 2", estado2Panel);
 
         javax.swing.GroupLayout estado3PanelLayout = new javax.swing.GroupLayout(estado3Panel);
         estado3Panel.setLayout(estado3PanelLayout);
@@ -116,7 +116,7 @@ public class Principal extends javax.swing.JFrame {
             .addGap(0, 463, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Estado 3", estado3Panel);
+        Estados.addTab("Estado 3", estado3Panel);
 
         jButton1.setText("Crear Tabla");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +172,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(Estados, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(654, Short.MAX_VALUE)
@@ -187,10 +187,9 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1)
+                        .addComponent(Estados)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(inputSymbols, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -226,7 +225,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel4.getAccessibleContext().setAccessibleName("jlabel4");
         jLabel4.getAccessibleContext().setAccessibleDescription("");
         Conf_Stack.getAccessibleContext().setAccessibleName("Conf_Stack");
-        jTabbedPane1.getAccessibleContext().setAccessibleName("Estados");
+        Estados.getAccessibleContext().setAccessibleName("Estados");
         jButton1.getAccessibleContext().setAccessibleName("createTable");
 
         pack();
@@ -242,8 +241,7 @@ public class Principal extends javax.swing.JFrame {
         Validacion.validarRepetidosEntrada(h);
         Validacion.validarRepetidosPila(h1);
         Validacion.validarRepetidosConfPila(h2);
-        
-        
+        Validacion.validarEstados(seleccionEstados, Estados);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void inputSymbolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSymbolsActionPerformed
@@ -256,15 +254,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_inputSymbolsKeyTyped
 
     private void seleccionEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionEstadosActionPerformed
-        int x = seleccionEstados.getSelectedIndex();
-        switch (x) {
-            case 3:
-                this.jTabbedPane1.setEnabledAt(2, true);
-            case 2:
-                this.jTabbedPane1.setEnabledAt(1, true);
-            case 1:
-                this.jTabbedPane1.setEnabledAt(0, true);
-        }
+        /*int x = seleccionEstados.getSelectedIndex();
+        
+        }*/
     }//GEN-LAST:event_seleccionEstadosActionPerformed
 
     private void stackSymbolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stackSymbolsActionPerformed
@@ -309,6 +301,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.TextField Conf_Stack;
+    private javax.swing.JTabbedPane Estados;
     private javax.swing.JPanel estado1Panel;
     private javax.swing.JPanel estado2Panel;
     private javax.swing.JPanel estado3Panel;
@@ -322,7 +315,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox<String> seleccionEstados;
     private java.awt.TextField stackSymbols;
     // End of variables declaration//GEN-END:variables
