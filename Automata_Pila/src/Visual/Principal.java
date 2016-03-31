@@ -201,10 +201,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(75, 75, 75)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Estados, javax.swing.GroupLayout.DEFAULT_SIZE, 854, Short.MAX_VALUE)
-                        .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -228,8 +225,9 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton3)
-                            .addComponent(jButton4))
-                        .addGap(32, 32, 32))))
+                            .addComponent(jButton4)))
+                    .addComponent(Estados, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(432, Short.MAX_VALUE))
         );
 
         jLabel1.getAccessibleContext().setAccessibleName("jlabel1");
