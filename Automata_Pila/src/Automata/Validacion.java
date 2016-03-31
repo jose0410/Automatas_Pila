@@ -3,6 +3,7 @@ import java.util.Stack;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 /**
  *
  * @author Nando
@@ -171,11 +172,10 @@ public class Validacion {
     }
     
     public static void validarEstados (JComboBox s, JTabbedPane y){
-        int i = 0;
         int x = s.getSelectedIndex();
         switch (x) {
             case 3:
-                y.setEnabledAt(2, true);
+                y.setEnabledAt(2, true);              
             case 2:
                 y.setEnabledAt(1, true);
             case 1:
@@ -187,7 +187,7 @@ public class Validacion {
                 break;
         }                
     } 
-    
+        
     
     
 }

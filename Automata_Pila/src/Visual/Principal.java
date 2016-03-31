@@ -37,9 +37,12 @@ public class Principal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         Conf_Stack = new java.awt.TextField();
         Estados = new javax.swing.JTabbedPane();
-        estado1Panel = new javax.swing.JPanel();
-        estado2Panel = new javax.swing.JPanel();
-        estado3Panel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        estado1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        estado2 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        estado3 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         seleccionEstados = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
@@ -79,44 +82,52 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel4.setText("Configuracion inicial Pila");
 
-        javax.swing.GroupLayout estado1PanelLayout = new javax.swing.GroupLayout(estado1Panel);
-        estado1Panel.setLayout(estado1PanelLayout);
-        estado1PanelLayout.setHorizontalGroup(
-            estado1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 805, Short.MAX_VALUE)
-        );
-        estado1PanelLayout.setVerticalGroup(
-            estado1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 463, Short.MAX_VALUE)
-        );
+        estado1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(estado1);
 
-        Estados.addTab("Estado 1", estado1Panel);
+        Estados.addTab("Estado1", jScrollPane1);
 
-        javax.swing.GroupLayout estado2PanelLayout = new javax.swing.GroupLayout(estado2Panel);
-        estado2Panel.setLayout(estado2PanelLayout);
-        estado2PanelLayout.setHorizontalGroup(
-            estado2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 805, Short.MAX_VALUE)
-        );
-        estado2PanelLayout.setVerticalGroup(
-            estado2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 463, Short.MAX_VALUE)
-        );
+        estado2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        estado2.setEnabled(false);
+        jScrollPane2.setViewportView(estado2);
 
-        Estados.addTab("Estado 2", estado2Panel);
+        Estados.addTab("Estado2", jScrollPane2);
 
-        javax.swing.GroupLayout estado3PanelLayout = new javax.swing.GroupLayout(estado3Panel);
-        estado3Panel.setLayout(estado3PanelLayout);
-        estado3PanelLayout.setHorizontalGroup(
-            estado3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 805, Short.MAX_VALUE)
-        );
-        estado3PanelLayout.setVerticalGroup(
-            estado3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 463, Short.MAX_VALUE)
-        );
+        estado3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        estado3.setEnabled(false);
+        jScrollPane3.setViewportView(estado3);
 
-        Estados.addTab("Estado 3", estado3Panel);
+        Estados.addTab("Estado3", jScrollPane3);
 
         jButton1.setText("Crear Tabla");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -173,9 +184,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(Estados, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(14, 14, 14))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(654, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(320, 320, 320))
         );
@@ -242,6 +253,7 @@ public class Principal extends javax.swing.JFrame {
         Validacion.validarRepetidosPila(h1);
         Validacion.validarRepetidosConfPila(h2);
         Validacion.validarEstados(seleccionEstados, Estados);
+        TablaTransicion.modificarTablar(h, h1, estado1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void inputSymbolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSymbolsActionPerformed
@@ -302,9 +314,9 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.TextField Conf_Stack;
     private javax.swing.JTabbedPane Estados;
-    private javax.swing.JPanel estado1Panel;
-    private javax.swing.JPanel estado2Panel;
-    private javax.swing.JPanel estado3Panel;
+    private javax.swing.JTable estado1;
+    private javax.swing.JTable estado2;
+    private javax.swing.JTable estado3;
     private java.awt.TextField inputSymbols;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -315,6 +327,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JComboBox<String> seleccionEstados;
     private java.awt.TextField stackSymbols;
     // End of variables declaration//GEN-END:variables
