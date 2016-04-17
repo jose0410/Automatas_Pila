@@ -58,9 +58,12 @@ public class TablaTransicion {
         int m = elementosPila.length;
         int n = s1.getColumnCount();
         String [] elementosEntrada = new String [n];
-        String [] operaciones1 = new String[s1.getRowCount()*s1.getColumnCount()];
-        String [] operaciones2 = new String[s2.getRowCount()*s2.getColumnCount()];
-        String [] operaciones3 = new String[s3.getRowCount()*s3.getColumnCount()];        
+        String [] operaciones1 = new String[(s1.getRowCount()-1)*(s1.getColumnCount()-1)];
+        String [] operaciones2 = new String[(s2.getRowCount()-1)*(s2.getColumnCount()-1)];
+        String [] operaciones3 = new String[(s3.getRowCount()-1)*(s3.getColumnCount()-1)];   
+        int op1 = 0;
+        int op2 = 0;
+        int op3 = 0;
         for (int i = 0; i < texto.length; i = i + 2){
             for(int j = 1;j < elementosPila.length; j++){
                 elementosPila[j]=String.valueOf(texto[i]);
@@ -73,25 +76,41 @@ public class TablaTransicion {
                 caracterFinal = s1.getColumnName(i);
             }
         }
+        
         for(int i = 0; i < s1.getRowCount(); i++){            
-            for(int j = 1; j < s1.getColumnCount(); j++){
-                for(int z = 0; z < operaciones1.length; z++){
-                    operaciones1[z] = (String)s1.getValueAt(i, j);
-                }                
+            int j = 1;           
+            
+                for(int z = 0; z < operaciones1.length; z++){                        
+                        if(j<(s1.getColumnCount())){
+                            operaciones1[op1] = (String)s1.getValueAt(i, j);
+                            j++;
+                            op1++;
+                        }
+                
             }
         }
         for(int i = 0; i < s2.getRowCount(); i++){            
-            for(int j = 1; j < s2.getColumnCount(); j++){
-                for(int z = 0; z < operaciones2.length; z++){
-                    operaciones2[z] = (String)s2.getValueAt(i, j);
-                }  
+            int j = 1;           
+            
+                for(int z = 0; z < operaciones2.length; z++){                        
+                        if(j<(s2.getColumnCount())){
+                            operaciones2[op2] = (String)s2.getValueAt(i, j);
+                            j++;
+                            op2++;
+                        }
+                
             }
         }
         for(int i = 0; i < s3.getRowCount(); i++){            
-            for(int j = 1; j < s3.getColumnCount(); j++){
-                for(int z = 0; z < operaciones3.length; z++){
-                    operaciones3[z] = (String)s3.getValueAt(i, j);
-                }  
+            int j = 1;           
+            
+                for(int z = 0; z < operaciones3.length; z++){                        
+                        if(j<(s3.getColumnCount())){
+                            operaciones3[op3] = (String)s3.getValueAt(i, j);
+                            j++;
+                            op3++;
+                        }
+                
             }
         }
         PrintWriter writer = null;
@@ -142,9 +161,13 @@ public class TablaTransicion {
                     writer.println("                                          "+operaciones1[i]);
                 }
                 if(i == (n - 1)){
-                    for(int j = 0; i < operaciones1.length; i++){
-                        operaciones1[j] = operaciones1[i+1];
-                        }
+                    int j = 0;
+                    while(i < operaciones1.length){                        
+                        String aux = operaciones1[i];
+                        operaciones1[j] = aux;
+                        j++;
+                        i++;                        
+                    }
                 }
 
             }
@@ -163,9 +186,13 @@ public class TablaTransicion {
                     writer.println("                                          "+operaciones2[i]);
                 }
                 if(i == (n - 1)){
-                    for(int j = 0; i < operaciones2.length; i++){
-                        operaciones2[j] = operaciones2[i+1];
-                        }
+                    int j = 0;
+                    while(i < operaciones2.length){                        
+                        String aux = operaciones2[i];
+                        operaciones2[j] = aux;
+                        j++;
+                        i++;                        
+                    }
                 }
 
             }
@@ -184,9 +211,13 @@ public class TablaTransicion {
                     writer.println("                                          "+operaciones3[i]);
                 }
                 if(i == (n - 1)){
-                    for(int j = 0; i < operaciones3.length; i++){
-                        operaciones3[j] = operaciones3[i+1];
-                        }
+                    int j = 0;
+                    while(i < operaciones3.length){                        
+                        String aux = operaciones3[i];
+                        operaciones3[j] = aux;
+                        j++;
+                        i++;                        
+                    }
                 }
 
             }
