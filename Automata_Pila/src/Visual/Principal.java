@@ -281,7 +281,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_stackSymbolsActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        String h1 = this.stackSymbols.getText(); 
+        String h = this.inputSymbols.getText();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void main(String args[]) {
