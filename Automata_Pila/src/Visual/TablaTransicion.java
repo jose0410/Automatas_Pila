@@ -7,8 +7,13 @@ package Visual;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -44,7 +49,8 @@ public class TablaTransicion {
         e.setModel(dtm);
     }
     
-    public static void crearArchivo(JTable s1,JTable s2, JTable s3, String h1, JComboBox x) throws IOException{
+    public static void crearArchivo(JTable s1,JTable s2, JTable s3, String h1, JComboBox x) throws FileNotFoundException, UnsupportedEncodingException{
+        int cont1 = 0;
         int y = x.getSelectedIndex();
         char[] texto = h1.toCharArray();
         String [] elementosPila = new String [(texto.length/2)+2];
@@ -88,9 +94,10 @@ public class TablaTransicion {
                 }  
             }
         }
-        File archivo = new File("c:","ReconocedorAp.txt");
-        BufferedWriter bw = new BufferedWriter(new FileWriter(archivo)); 
-        bw.write("public class Reconocedor(){\n"
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter("PracticaLenguaje.java", "UTF-8");
+            writer.println("public class Reconocedor(){\n"
                 + " public static void main(String [] args){\n"
                 + "     Scanner s = new Scanner(System.in);\n"
                 + "     String cadena = s.next();\n"
@@ -100,68 +107,104 @@ public class TablaTransicion {
                 + "     char [] elementosPila = new char ["+ m +"];\n"
                 + "     char [] elementosEntrada = new char ["+ n +"];\n"
                 + "     char [] reconocer = cadena.toCharArray();\n"
-                + "     int fin = 0");
-        for(int i = 0; i < m; i++){
-            bw.write("      elementosPila["+ i +"] = " + elementosPila[i] + ";\n");
-        }
-        for(int i = 0; i < n; i++){
-            bw.write("      elementosEntrada["+ i +"] = " + elementosEntrada[i] + ";\n");
-        }
-        for(int i = 0; i < operaciones1.length; i++){
-            bw.write(operaciones1[i]);
-        }
-        for(int i = 0; i < operaciones2.length; i++){
-            bw.write("      String e2"+ i +" = " + operaciones2[i] + ";\n");
-        }
-        for(int i = 0; i < operaciones3.length; i++){
-            bw.write("      String e3"+i+" = " + operaciones3[i] + ";\n");
-        }
-        
-        bw.write("      while(reconocer[fin]!= caracterFinal){\n"
-                + "         for(int w = 0; w < operaciones1.length; w++){\n"
-                + "             for(int j = 0; j < elementosPila.length; j++){\n"
-                + "             "
-                + "                 if(estados == 1){"
-                + "                     switch(Pila.peek()){;"
-                + "                         case elementosPila[j]:"
-                + "                             for(int y = 0; y < elementosEntrada; y++){"
-                + "                                 switch(reconocer[y]){"
-                + "                                     case elementosEntrada[y]:");
-        for(int i = 0; i < operaciones1.length; i++){
-            bw.write("                                          "+operaciones1[i]);
-        }
-        bw.write("                                 }"
-                + "                             }"
-                + "                     }"
-                + "                 }"
-                + "                 if(estados == 2){"
-                + "                     switch(Pila.peek()){;"
-                + "                         case elementosPila[j]:"
-                + "                             for(int y = 0; y < elementosEntrada; y++){"
-                + "                                 switch(reconocer[y]){"
-                + "                                     case elementosEntrada[y]:");
-        for(int i = 0; i < operaciones2.length; i++){
-            bw.write("                                          "+operaciones2[i]);
-        }
-        bw.write("                                 }"
-                + "                             }"
-                + "                     }"
-                + "                 }"
-                + "                 if(estados == 3){"
-                + "                     switch(Pila.peek()){;"
-                + "                         case elementosPila[j]:"
-                + "                             for(int y = 0; y < elementosEntrada; y++){"
-                + "                                 switch(reconocer[y]){"
-                + "                                     case elementosEntrada[y]:");
-        bw.write(""
+                + "     int fin = 0;\n"
+                + "     String [] operaciones1 = new String["+ s1.getRowCount()*s1.getColumnCount()+"];\n" 
+                + "     String [] operaciones2 = new String["+s2.getRowCount()*s2.getColumnCount()+"];\n" 
+                + "     String [] operaciones3 = new String["+s3.getRowCount()*s3.getColumnCount()+"];\n");
+            for(int i = 0; i < m; i++){
+                writer.println("      elementosPila["+ i +"] = " + elementosPila[i] + ";\n");
+            }
+            for(int i = 0; i < n; i++){
+                writer.println("      elementosEntrada["+ i +"] = " + elementosEntrada[i] + ";\n");
+            }
+            for(int i = 0; i < operaciones1.length; i++){
+                writer.println("      operaciones1[" +i+ "] = " + operaciones1[i] + ";\n");
+            }
+            for(int i = 0; i < operaciones2.length; i++){
+                writer.println("      operaciones2[" +i+ "] = " + operaciones2[i] + ";\n");
+            }
+            for(int i = 0; i < operaciones3.length; i++){
+                writer.println("      operaciones3[" +i+ "] = " + operaciones3[i] + ";\n");
+            }
+
+            writer.println("      while(reconocer[fin]!= caracterFinal){\n"
+                    + "         for(int w = 0; w < operaciones1.length; w++){\n"
+                    + "             for(int j = 0; j < elementosPila.length; j++){\n"
+                    + "             "
+                    + "                 if(estados == 1){"
+                    + "                     switch(Pila.peek()){;"
+                    + "                         case elementosPila[j]:"
+                    + "                             for(int y = 0; y < elementosEntrada; y++){"
+                    + "                                 switch(reconocer[y]){"
+                    + "                                     case elementosEntrada[y]:");
+            for(int i = 0; i < operaciones1.length; i++){
+                if(i < n){
+                    writer.println("                                          "+operaciones1[i]);
+                }
+                if(i == (n - 1)){
+                    for(int j = 0; i < operaciones1.length; i++){
+                        operaciones1[j] = operaciones1[i+1];
+                        }
+                }
+
+            }
+            writer.println("                                 }"
+                    + "                             }"
+                    + "                     }"
+                    + "                 }"
+                    + "                 if(estados == 2){"
+                    + "                     switch(Pila.peek()){;"
+                    + "                         case elementosPila[j]:"
+                    + "                             for(int y = 0; y < elementosEntrada; y++){"
+                    + "                                 switch(reconocer[y]){"
+                    + "                                     case elementosEntrada[y]:");
+            for(int i = 0; i < operaciones2.length; i++){
+                if(i < n){
+                    writer.println("                                          "+operaciones2[i]);
+                }
+                if(i == (n - 1)){
+                    for(int j = 0; i < operaciones2.length; i++){
+                        operaciones2[j] = operaciones2[i+1];
+                        }
+                }
+
+            }
+            writer.println("                                 }"
+                    + "                             }"
+                    + "                     }"
+                    + "                 }"
+                    + "                 if(estados == 3){"
+                    + "                     switch(Pila.peek()){;"
+                    + "                         case elementosPila[j]:"
+                    + "                             for(int y = 0; y < elementosEntrada; y++){"
+                    + "                                 switch(reconocer[y]){"
+                    + "                                     case elementosEntrada[y]:");
+            for(int i = 0; i < operaciones3.length; i++){
+                if(i < n){
+                    writer.println("                                          "+operaciones3[i]);
+                }
+                if(i == (n - 1)){
+                    for(int j = 0; i < operaciones3.length; i++){
+                        operaciones3[j] = operaciones3[i+1];
+                        }
+                }
+
+            }
+            writer.println(""
                 + "             }"
                 + "         }"
                 + "         fin++;"
                 + "     }"
                 + " }"
                 + "}");
-        
-        
+            writer.close();
+            System.exit(cont1);
+        }catch(FileNotFoundException ex){
+            
+        }finally{
+            writer.close();
+        }
+    
         
         
         
