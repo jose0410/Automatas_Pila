@@ -51,11 +51,9 @@ public class TablaTransicion {
     
     public static void crearArchivo(JTable s1,JTable s2, JTable s3, String h1, JComboBox x) throws FileNotFoundException, UnsupportedEncodingException{
         int cont1 = 0;
-        int numeroEstados = x.getSelectedIndex();
         char[] texto = h1.toCharArray();
         String [] elementosPila = new String [(texto.length/2)+2];
         String caracterFinal = null;
-        int cantidadElementosPila = elementosPila.length;
         int numerodeColumnas = s1.getColumnCount();
         String [] elementosEntrada = new String [numerodeColumnas];
         String [] operaciones1 = new String[(s1.getRowCount())*(s1.getColumnCount())];
@@ -116,7 +114,9 @@ public class TablaTransicion {
         PrintWriter writer = null;
         try {
             writer = new PrintWriter("PracticaLenguaje.java", "UTF-8");
-            writer.println("public class PracticaLenguaje{\n"
+            writer.println("import java.util.Scanner;\n" 
+                + "import java.util.Stack;\n"
+                + "public class PracticaLenguaje{\n"
                 + " public static void main(String [] args){\n"
                 + "     Scanner s = new Scanner(System.in);\n"
                 + "     String cadena = s.next();\n"
@@ -124,25 +124,9 @@ public class TablaTransicion {
                 + "     int estados = 1;\n"
                 + "     char caracterFinal = '" + caracterFinal + "';\n"
                 + "     char [] reconocer = cadena.toCharArray();\n"
-                + "     int fin = 0;\n");
-                /*+ "     String [] operaciones1 = new String["+ s1.getRowCount()*s1.getColumnCount()+"];\n" 
-                + "     String [] operaciones2 = new String["+s2.getRowCount()*s2.getColumnCount()+"];\n" 
-                + "     String [] operaciones3 = new String["+s3.getRowCount()*s3.getColumnCount()+"];\n");*/
-            for(int i = 0; i < cantidadElementosPila; i++){
-                writer.println("      elementosPila["+ i +"] = " + elementosPila[i] + ";\n");
-            }
-            for(int i = 0; i < numerodeColumnas; i++){
-                writer.println("      elementosEntrada["+ i +"] = " + elementosEntrada[i] + ";\n");
-            }
-            /*for(int i = 0; i < operaciones1.length; i++){
-                writer.println("      operaciones1[" +i+ "] = " + operaciones1[i] + ";\n");
-            }
-            for(int i = 0; i < operaciones2.length; i++){
-                writer.println("      operaciones2[" +i+ "] = " + operaciones2[i] + ";\n");
-            }
-            for(int i = 0; i < operaciones3.length; i++){
-                writer.println("      operaciones3[" +i+ "] = " + operaciones3[i] + ";\n");
-            }*/
+                + "     int fin = 0;\n"
+                + "     ");
+                
             int controladorPila = 1;
             int controladorEntrada = 1;
             int mop = 0;
@@ -154,7 +138,7 @@ public class TablaTransicion {
                 controladorEntrada = 1;
                 while(controladorEntrada < elementosEntrada.length){
                 writer.println("                    if('"+elementosEntrada[controladorEntrada]+"' == reconocer[fin]){\n"
-                             + "                        Pila."+operaciones1[mop]+");\n");
+                             + "                        Pila."+operaciones1[mop]+");\n}\n");
                 mop++;
                 controladorEntrada++;
                 }
@@ -163,7 +147,6 @@ public class TablaTransicion {
             mop = 0;
             writer.println("                                 }\n"
                     + "                             }\n"
-                    + "                     }\n"
                     + "                 if(estados == 2){\n"
                     + "                     switch(Pila.peek()){;\n");
             while(controladorPila < elementosPila.length){
@@ -171,7 +154,7 @@ public class TablaTransicion {
                 writer.println("                case '"+elementosPila[controladorPila]+"':\n");
                 while(controladorEntrada < elementosEntrada.length){
                 writer.println("                    if('"+elementosEntrada[controladorEntrada]+"' == reconocer[fin]){\n"
-                             + "                        Pila."+operaciones2[mop]+");\n");
+                             + "                        Pila."+operaciones2[mop]+");\n}\n");
                 mop++;
                 controladorEntrada++;
                 }
@@ -179,8 +162,6 @@ public class TablaTransicion {
             }
             writer.println("                                 }\n"
                     + "                             }\n"
-                    + "                     }\n"
-                    + "                 }\n"
                     + "                 if(estados == 3){\n"
                     + "                     switch(Pila.peek()){;\n");
             while(controladorPila < elementosPila.length){
@@ -188,7 +169,7 @@ public class TablaTransicion {
                 writer.println("                case '"+elementosPila[controladorPila]+"':\n");
                 while(controladorEntrada < elementosEntrada.length){
                     writer.println("                    if('"+elementosEntrada[controladorEntrada]+"' == reconocer[fin]){\n"
-                             + "                        Pila."+operaciones3[mop]+");\n");
+                             + "                        Pila."+operaciones3[mop]+");\n}\n");
                     mop++; 
                     controladorEntrada++;
                 }
@@ -200,7 +181,7 @@ public class TablaTransicion {
                 + "         fin++;\n"
                 + "     }\n"
                 + " }\n"
-                + "}");
+                    + "}");
             writer.close();
             System.exit(cont1);
         }catch(FileNotFoundException ex){
