@@ -51,16 +51,16 @@ public class TablaTransicion {
     
     public static void crearArchivo(JTable s1,JTable s2, JTable s3, String h1, JComboBox x) throws FileNotFoundException, UnsupportedEncodingException{
         int cont1 = 0;
-        int y = x.getSelectedIndex();
+        int numeroEstados = x.getSelectedIndex();
         char[] texto = h1.toCharArray();
         String [] elementosPila = new String [(texto.length/2)+2];
         String caracterFinal = null;
-        int m = elementosPila.length;
-        int n = s1.getColumnCount();
-        String [] elementosEntrada = new String [n];
-        String [] operaciones1 = new String[(s1.getRowCount()-1)*(s1.getColumnCount()-1)];
-        String [] operaciones2 = new String[(s2.getRowCount()-1)*(s2.getColumnCount()-1)];
-        String [] operaciones3 = new String[(s3.getRowCount()-1)*(s3.getColumnCount()-1)];   
+        int cantidadElementosPila = elementosPila.length;
+        int numerodeColumnas = s1.getColumnCount();
+        String [] elementosEntrada = new String [numerodeColumnas];
+        String [] operaciones1 = new String[(s1.getRowCount())*(s1.getColumnCount())];
+        String [] operaciones2 = new String[(s2.getRowCount())*(s2.getColumnCount())];
+        String [] operaciones3 = new String[(s3.getRowCount())*(s3.getColumnCount())];   
         int op1 = 0;
         int op2 = 0;
         int op3 = 0;
@@ -70,9 +70,9 @@ public class TablaTransicion {
                 i = i +2;
             }           
         }
-        for (int i = 1; i < n; i++){
+        for (int i = 1; i < numerodeColumnas; i++){
             elementosEntrada[i] = s1.getColumnName(i);
-            if(i == (n - 1)){
+            if(i == (numerodeColumnas - 1)){
                 caracterFinal = s1.getColumnName(i);
             }
         }
@@ -116,27 +116,25 @@ public class TablaTransicion {
         PrintWriter writer = null;
         try {
             writer = new PrintWriter("PracticaLenguaje.java", "UTF-8");
-            writer.println("public class Reconocedor(){\n"
+            writer.println("public class PracticaLenguaje(){\n"
                 + " public static void main(String [] args){\n"
                 + "     Scanner s = new Scanner(System.in);\n"
                 + "     String cadena = s.next();\n"
                 + "     Stack Pila = new Stack;\n"
-                + "     int estados = " + y + ";\n"
+                + "     int estados = 1;\n"
                 + "     String caracterFinal = " + caracterFinal + ";\n"
-                + "     char [] elementosPila = new char ["+ m +"];\n"
-                + "     char [] elementosEntrada = new char ["+ n +"];\n"
                 + "     char [] reconocer = cadena.toCharArray();\n"
-                + "     int fin = 0;\n"
-                + "     String [] operaciones1 = new String["+ s1.getRowCount()*s1.getColumnCount()+"];\n" 
+                + "     int fin = 0;\n");
+                /*+ "     String [] operaciones1 = new String["+ s1.getRowCount()*s1.getColumnCount()+"];\n" 
                 + "     String [] operaciones2 = new String["+s2.getRowCount()*s2.getColumnCount()+"];\n" 
-                + "     String [] operaciones3 = new String["+s3.getRowCount()*s3.getColumnCount()+"];\n");
-            for(int i = 0; i < m; i++){
+                + "     String [] operaciones3 = new String["+s3.getRowCount()*s3.getColumnCount()+"];\n");*/
+            for(int i = 0; i < cantidadElementosPila; i++){
                 writer.println("      elementosPila["+ i +"] = " + elementosPila[i] + ";\n");
             }
-            for(int i = 0; i < n; i++){
+            for(int i = 0; i < numerodeColumnas; i++){
                 writer.println("      elementosEntrada["+ i +"] = " + elementosEntrada[i] + ";\n");
             }
-            for(int i = 0; i < operaciones1.length; i++){
+            /*for(int i = 0; i < operaciones1.length; i++){
                 writer.println("      operaciones1[" +i+ "] = " + operaciones1[i] + ";\n");
             }
             for(int i = 0; i < operaciones2.length; i++){
@@ -144,82 +142,71 @@ public class TablaTransicion {
             }
             for(int i = 0; i < operaciones3.length; i++){
                 writer.println("      operaciones3[" +i+ "] = " + operaciones3[i] + ";\n");
-            }
-
+            }*/
+            int controladorPila = 0;
+            int controladorEntrada = 0;
             writer.println("      while(reconocer[fin]!= caracterFinal){\n"
-                    + "         for(int w = 0; w < operaciones1.length; w++){\n"
-                    + "             for(int j = 0; j < elementosPila.length; j++){\n"
-                    + "             "
-                    + "                 if(estados == 1){"
-                    + "                     switch(Pila.peek()){;"
-                    + "                         case elementosPila[j]:"
-                    + "                             for(int y = 0; y < elementosEntrada; y++){"
-                    + "                                 switch(reconocer[y]){"
-                    + "                                     case elementosEntrada[y]:");
-            for(int i = 0; i < operaciones1.length; i++){
-                if(i < n){
-                    writer.println("                                          "+operaciones1[i]);
+                    + "                 if(estados == 1){\n"
+                    + "                     switch(Pila.peek()){;\n");
+            while(controladorPila < elementosPila.length){
+                writer.println("                case"+elementosPila[controladorPila]+":\n");
+                while(controladorEntrada < elementosEntrada.length){
+                writer.println("                    if("+elementosEntrada[controladorEntrada]+" == reconocer[fin]){\n"
+                             + "                        Pila."+operaciones1[0]+");\n");
+                int mop = 1;
+                while(mop < operaciones1.length){   
+                    String aux = operaciones1[mop];
+                    operaciones1[mop] = aux;
+                    mop++;                      
+                    } 
+                controladorEntrada++;
                 }
-                if(i == (n - 1)){
-                    int j = 0;
-                    while(i < operaciones1.length){                        
-                        String aux = operaciones1[i];
-                        operaciones1[j] = aux;
-                        j++;
-                        i++;                        
-                    }
-                }
-
-            }
+                controladorPila++;
+            } 
+            controladorPila = 0;
+            controladorEntrada = 0;
             writer.println("                                 }"
                     + "                             }"
                     + "                     }"
-                    + "                 }"
                     + "                 if(estados == 2){"
-                    + "                     switch(Pila.peek()){;"
-                    + "                         case elementosPila[j]:"
-                    + "                             for(int y = 0; y < elementosEntrada; y++){"
-                    + "                                 switch(reconocer[y]){"
-                    + "                                     case elementosEntrada[y]:");
-            for(int i = 0; i < operaciones2.length; i++){
-                if(i < n){
-                    writer.println("                                          "+operaciones2[i]);
+                    + "                     switch(Pila.peek()){;");
+            while(controladorPila < elementosPila.length){
+                writer.println("                case"+elementosPila[controladorPila]+":\n");
+                while(controladorEntrada < elementosEntrada.length){
+                writer.println("                    if("+elementosEntrada[controladorEntrada]+" == reconocer[fin]){\n"
+                             + "                        Pila."+operaciones2[0]+");\n");
+                int mop = 1;
+                while(mop < operaciones2.length){   
+                    String aux = operaciones2[mop];
+                    operaciones2[mop] = aux;
+                    mop++;                      
+                    } 
+                controladorEntrada++;
                 }
-                if(i == (n - 1)){
-                    int j = 0;
-                    while(i < operaciones2.length){                        
-                        String aux = operaciones2[i];
-                        operaciones2[j] = aux;
-                        j++;
-                        i++;                        
-                    }
-                }
-
+                controladorPila++;
             }
             writer.println("                                 }"
                     + "                             }"
                     + "                     }"
                     + "                 }"
                     + "                 if(estados == 3){"
-                    + "                     switch(Pila.peek()){;"
-                    + "                         case elementosPila[j]:"
-                    + "                             for(int y = 0; y < elementosEntrada; y++){"
-                    + "                                 switch(reconocer[y]){"
-                    + "                                     case elementosEntrada[y]:");
-            for(int i = 0; i < operaciones3.length; i++){
-                if(i < n){
-                    writer.println("                                          "+operaciones3[i]);
+                    + "                     switch(Pila.peek()){;");
+            controladorEntrada = 0;
+            controladorPila = 0;
+            while(controladorPila < elementosPila.length){
+                writer.println("                case"+elementosPila[controladorPila]+":\n");
+                while(controladorEntrada < elementosEntrada.length){
+                writer.println("                    if("+elementosEntrada[controladorEntrada]+" == reconocer[fin]){\n"
+                             + "                        Pila."+operaciones3[0]+");\n");
+                int mop = 1;
+                while(mop < operaciones3.length){   
+                    String aux = operaciones3[mop];
+                    operaciones3[mop] = aux;
+                    mop++;                      
+                    } 
+                controladorEntrada++;
                 }
-                if(i == (n - 1)){
-                    int j = 0;
-                    while(i < operaciones3.length){                        
-                        String aux = operaciones3[i];
-                        operaciones3[j] = aux;
-                        j++;
-                        i++;                        
-                    }
-                }
-
+                controladorPila++;
             }
             writer.println(""
                 + "             }"
