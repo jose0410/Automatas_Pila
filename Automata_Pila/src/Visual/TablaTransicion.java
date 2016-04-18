@@ -116,13 +116,13 @@ public class TablaTransicion {
         PrintWriter writer = null;
         try {
             writer = new PrintWriter("PracticaLenguaje.java", "UTF-8");
-            writer.println("public class PracticaLenguaje(){\n"
+            writer.println("public class PracticaLenguaje{\n"
                 + " public static void main(String [] args){\n"
                 + "     Scanner s = new Scanner(System.in);\n"
                 + "     String cadena = s.next();\n"
-                + "     Stack Pila = new Stack;\n"
+                + "     Stack Pila = new Stack();\n"
                 + "     int estados = 1;\n"
-                + "     String caracterFinal = " + caracterFinal + ";\n"
+                + "     char caracterFinal = '" + caracterFinal + "';\n"
                 + "     char [] reconocer = cadena.toCharArray();\n"
                 + "     int fin = 0;\n");
                 /*+ "     String [] operaciones1 = new String["+ s1.getRowCount()*s1.getColumnCount()+"];\n" 
@@ -143,77 +143,63 @@ public class TablaTransicion {
             for(int i = 0; i < operaciones3.length; i++){
                 writer.println("      operaciones3[" +i+ "] = " + operaciones3[i] + ";\n");
             }*/
-            int controladorPila = 0;
-            int controladorEntrada = 0;
+            int controladorPila = 1;
+            int controladorEntrada = 1;
+            int mop = 0;
             writer.println("      while(reconocer[fin]!= caracterFinal){\n"
                     + "                 if(estados == 1){\n"
                     + "                     switch(Pila.peek()){;\n");
             while(controladorPila < elementosPila.length){
-                writer.println("                case"+elementosPila[controladorPila]+":\n");
+                writer.println("                case '"+elementosPila[controladorPila]+"':\n");
+                controladorEntrada = 1;
                 while(controladorEntrada < elementosEntrada.length){
-                writer.println("                    if("+elementosEntrada[controladorEntrada]+" == reconocer[fin]){\n"
-                             + "                        Pila."+operaciones1[0]+");\n");
-                int mop = 1;
-                while(mop < operaciones1.length){   
-                    String aux = operaciones1[mop];
-                    operaciones1[mop] = aux;
-                    mop++;                      
-                    } 
+                writer.println("                    if('"+elementosEntrada[controladorEntrada]+"' == reconocer[fin]){\n"
+                             + "                        Pila."+operaciones1[mop]+");\n");
+                mop++;
                 controladorEntrada++;
                 }
                 controladorPila++;
             } 
-            controladorPila = 0;
-            controladorEntrada = 0;
-            writer.println("                                 }"
-                    + "                             }"
-                    + "                     }"
-                    + "                 if(estados == 2){"
-                    + "                     switch(Pila.peek()){;");
+            mop = 0;
+            writer.println("                                 }\n"
+                    + "                             }\n"
+                    + "                     }\n"
+                    + "                 if(estados == 2){\n"
+                    + "                     switch(Pila.peek()){;\n");
             while(controladorPila < elementosPila.length){
-                writer.println("                case"+elementosPila[controladorPila]+":\n");
+                controladorEntrada = 1;
+                writer.println("                case '"+elementosPila[controladorPila]+"':\n");
                 while(controladorEntrada < elementosEntrada.length){
-                writer.println("                    if("+elementosEntrada[controladorEntrada]+" == reconocer[fin]){\n"
-                             + "                        Pila."+operaciones2[0]+");\n");
-                int mop = 1;
-                while(mop < operaciones2.length){   
-                    String aux = operaciones2[mop];
-                    operaciones2[mop] = aux;
-                    mop++;                      
-                    } 
+                writer.println("                    if('"+elementosEntrada[controladorEntrada]+"' == reconocer[fin]){\n"
+                             + "                        Pila."+operaciones2[mop]+");\n");
+                mop++;
                 controladorEntrada++;
                 }
                 controladorPila++;
             }
-            writer.println("                                 }"
-                    + "                             }"
-                    + "                     }"
-                    + "                 }"
-                    + "                 if(estados == 3){"
-                    + "                     switch(Pila.peek()){;");
-            controladorEntrada = 0;
-            controladorPila = 0;
+            writer.println("                                 }\n"
+                    + "                             }\n"
+                    + "                     }\n"
+                    + "                 }\n"
+                    + "                 if(estados == 3){\n"
+                    + "                     switch(Pila.peek()){;\n");
             while(controladorPila < elementosPila.length){
-                writer.println("                case"+elementosPila[controladorPila]+":\n");
+                controladorEntrada = 1;
+                writer.println("                case '"+elementosPila[controladorPila]+"':\n");
                 while(controladorEntrada < elementosEntrada.length){
-                writer.println("                    if("+elementosEntrada[controladorEntrada]+" == reconocer[fin]){\n"
-                             + "                        Pila."+operaciones3[0]+");\n");
-                int mop = 1;
-                while(mop < operaciones3.length){   
-                    String aux = operaciones3[mop];
-                    operaciones3[mop] = aux;
-                    mop++;                      
-                    } 
-                controladorEntrada++;
+                    writer.println("                    if('"+elementosEntrada[controladorEntrada]+"' == reconocer[fin]){\n"
+                             + "                        Pila."+operaciones3[mop]+");\n");
+                    mop++; 
+                    controladorEntrada++;
                 }
                 controladorPila++;
             }
             writer.println(""
-                + "             }"
-                + "         }"
-                + "         fin++;"
-                + "     }"
-                + " }"
+                + "             }\n"
+                + "         }\n"
+                + "         fin++;\n"
+                + "     }\n"
+                + " }\n"
                 + "}");
             writer.close();
             System.exit(cont1);
